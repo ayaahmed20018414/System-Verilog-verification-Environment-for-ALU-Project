@@ -8,4 +8,8 @@ In this project, I implemented ALU (arithmetic logic unit) using SV and tested t
 
 
 ![image](https://github.com/ayaahmed20018414/System-Verilog-verification-Environment-for-ALU-Project/assets/82789012/5b6d5a45-9c89-49f0-9e60-eb88cecd41c8)
+                                                              
                                                               Figure 1 SV environment architecture.
+
+
+
