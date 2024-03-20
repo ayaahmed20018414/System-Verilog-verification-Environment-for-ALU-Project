@@ -23,7 +23,8 @@ In ALU specification document it is required to implement an ALU that make arith
 
 
 **Verification Environment using system Verilog**
-1.	Transaction class 
+1.	Transaction class
+    
 In transaction class, input and output data is declared inside it(except clk as it is input for interface from testbench top) as data will be transferred from each class in the Environment in form of transaction(from generator to driver through gen2drv mailbox, from monitor to Scoreboard through mon2Scb mailbox and from monitor to coverpoints class through mon2cov mailbox).
 I transaction class, A, B, a_op, b_op, a_en, b_en are randomized to take different values under certain constraints to apply them to our design to test the functionality.
 In transaction class, a_op is randomized to take all possible values except the value of 7 as it isn’t allowed to apply this value to the design and if it is applied to it the design will give an error message as we said before to tell the verifier not to put value of 7.
@@ -33,12 +34,14 @@ a_en, and b_en is randomized to take half of the time 0 and the other half to ha
 Function print_info is used to display transaction information so that I can see the transactions information from generator to driver or from generator to driver and so on.
 
 
-2.	Generator class
+2. 	Generator class
+   
 The generator class is used to generate stimulus that will be applied to design interface. In class generator it randomizes rand data in transaction class for a specific number of times (repeat_count) and then put generated transactions to mailbox gen2drv so that driver (bin level transaction) can take these generated transactions and apply it to the design interface.
 An event called ended is used to trigger that the generator finished generated all transactions and put them in the gen2drv mailbox.
 
 
-3.	Driver class 
+3. Driver class
+    
 Driver class used to drive the generated stimulus from generator (transactions) to the design interface acting as a bin level transaction.
 In driver class it has 2 tasks (not functions as it consumes time):
 •	reset task: in reset task firstly, it waits for reset to happen then it will display when this happens by a message reset asserted (it is preferred to start the simulation with asserting reset to the design interface) after that drive the design with zeros as in this case the design output will be zero and won’t take into consideration the input value.
