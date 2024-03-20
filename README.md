@@ -13,6 +13,7 @@ In this project, I implemented ALU (arithmetic logic unit) using SV and tested t
                                                 
 
 **ALU design procedure** 
+
 In ALU specification document it is required to implement an ALU that make arithmetic and logic operations under certain conditions:
 •	Using ALU_en to enable ALU to do operations and if ALU_en=0 the ALU output in this case will be Zero.
 •	When both a_en and b_en are equal to zero, the ALU will be also disabled in this case and output will be Zero.
@@ -23,6 +24,7 @@ In ALU specification document it is required to implement an ALU that make arith
 
 
 **Verification Environment using system Verilog**
+
 1.	Transaction class
     
 In transaction class, input and output data is declared inside it(except clk as it is input for interface from testbench top) as data will be transferred from each class in the Environment in form of transaction(from generator to driver through gen2drv mailbox, from monitor to Scoreboard through mon2Scb mailbox and from monitor to coverpoints class through mon2cov mailbox).
