@@ -176,7 +176,7 @@ As mentioned before in line coverage we won’t give the design value of 7 for a
 
                                                           exclusion file contents.
 
-**Conclusion **
+**Conclusion**
 
 In conclusion, the SystemVerilog environment developed for the ALU design project has proven to be robust, efficient, and highly functional. Through the implementation of SystemVerilog constructs, such as classes and covergroups, we have created a comprehensive verification framework that ensures the correctness and reliability of the ALU under various conditions. The testbench, constructed using SystemVerilog features, including constrained randomization and functional coverage, has facilitated the exploration of the ALU's operational space, exposing potential corner cases and uncovering subtle bugs. The use of covergroups has allowed us to quantify the quality of our testbench, providing valuable insights into the completeness of our verification efforts. The SystemVerilog environment presented in this report has proven to be an invaluable tool for verifying the ALU design. Its effectiveness in uncovering subtle issues and providing quantitative metrics for coverage underscores the importance of adopting advanced verification methodologies in complex digital designs.
                                                       
