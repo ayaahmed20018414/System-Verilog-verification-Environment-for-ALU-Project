@@ -94,10 +94,94 @@ In Environment class, I will create one object from all previous classes and cre
 In test module, Environment class is created and given to it repeat_count to specify number of generated stimuluses that I want to give to the design.
 
 
+9.	Test bench top module
+    
+In test bench top module, test module and design will be connected through the interface and generated clock with 10ns period (100MHz frequency) will be given to the interface and reset signal also will be generated and given to the interface.
 
 
 
 
+**Code coverage** 
+1.	line coverage  
 
+![image](https://github.com/ayaahmed20018414/System-Verilog-verification-Environment-for-ALU-Project/assets/82789012/478bd7f1-5281-4d2e-a26b-c7ff1eb21cb4)
+
+                                                      line coverage value = 87.74%
+
+                                                      
+As shown in figure, line coverage will be 87.74% as we won’t give the design value of 7 for a_op as it isn’t illegible, so it won’t cover the line of display error message when a_op.  
+
+
+As this is design specification, we can say after excluding this case that line coverage is 96.15%.
+
+
+![image](https://github.com/ayaahmed20018414/System-Verilog-verification-Environment-for-ALU-Project/assets/82789012/039df2b9-daeb-412d-b9a3-5749525d5a44)
+
+                                                  line coverage after exclude line 32.
+
+
+In case that a_en=0 and b_en=1, it isn’t illegible to give the design value of b_op=3 so it won’t take this value and this statement won’t be covered and we can exclude it from our line coverage.
+
+![image](https://github.com/ayaahmed20018414/System-Verilog-verification-Environment-for-ALU-Project/assets/82789012/69076f67-0788-4222-bbcc-2112e4275f3c)
+
+                                                line coverage after exclude line 48 is 100%.
+
+
+2.	Toggle coverage
+
+
+![image](https://github.com/ayaahmed20018414/System-Verilog-verification-Environment-for-ALU-Project/assets/82789012/d3bb654d-42bc-4644-a734-665105418af4)
+
+                                  `  toggle coverage in the design is 100%.
+
+
+3.	Condition coverage
+
+![image](https://github.com/ayaahmed20018414/System-Verilog-verification-Environment-for-ALU-Project/assets/82789012/c816ea95-5df6-4282-93a5-443c00d96e73)
+
+
+conditional coverage percentage for each condition.
+
+As shown in figure, last condition won’t take values 0 and 1 or 1 and 0 respectively for a_en and b_en value as it is the last condition in the if statement chain which make sense, so we can exclude it from our condition coverage report.
+
+
+
+![image](https://github.com/ayaahmed20018414/System-Verilog-verification-Environment-for-ALU-Project/assets/82789012/ec7d1a7f-3d26-476e-80f8-35eddc5d8d8c)
+
+                                                condition coverage after excluding unexpected condition. 
+
+
+4. branch coverage 
+As mentioned before in line coverage we won’t give the design value of 7 for a_op as it isn’t illegible, so it won’t cover the line of display error message when a_op, so we won’t enter branch case that a_op=7 in case statement as well as value of b_op=3 in branch case when a_en=0 and b_en=1.
+
+
+
+![image](https://github.com/ayaahmed20018414/System-Verilog-verification-Environment-for-ALU-Project/assets/82789012/0df490a5-e1ed-4fec-a73a-f29d974cd1f0)
+
+                                                    branch coverage before excluding unachievable conditions.
+
+
+
+![image](https://github.com/ayaahmed20018414/System-Verilog-verification-Environment-for-ALU-Project/assets/82789012/3b9a4356-215e-4ac8-992c-b13f20b9a62f)
+
+                                                      final branch coverage after excluding all unachievable conditions.
+
+![image](https://github.com/ayaahmed20018414/System-Verilog-verification-Environment-for-ALU-Project/assets/82789012/5f751162-2bdc-490b-8fbc-8947f48d3cbf)
+                                                      
+                                                      final code coverage percentages.
+
+
+
+![image](https://github.com/ayaahmed20018414/System-Verilog-verification-Environment-for-ALU-Project/assets/82789012/8a32035a-e84c-4a0b-aacb-700d22cb66de)
+
+                                                          exclusion file contents.
+
+**Conclusion **
+
+In conclusion, the SystemVerilog environment developed for the ALU design project has proven to be robust, efficient, and highly functional. Through the implementation of SystemVerilog constructs, such as classes and covergroups, we have created a comprehensive verification framework that ensures the correctness and reliability of the ALU under various conditions. The testbench, constructed using SystemVerilog features, including constrained randomization and functional coverage, has facilitated the exploration of the ALU's operational space, exposing potential corner cases and uncovering subtle bugs. The use of covergroups has allowed us to quantify the quality of our testbench, providing valuable insights into the completeness of our verification efforts. The SystemVerilog environment presented in this report has proven to be an invaluable tool for verifying the ALU design. Its effectiveness in uncovering subtle issues and providing quantitative metrics for coverage underscores the importance of adopting advanced verification methodologies in complex digital designs.
+                                                      
+                                                    
+
+                                                
 
 
