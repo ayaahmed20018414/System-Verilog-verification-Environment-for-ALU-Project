@@ -68,12 +68,12 @@ In coverpoints class, I check that if values of A, B, a_en, b_en, a_op and b_op 
 
 ![image](https://github.com/ayaahmed20018414/System-Verilog-verification-Environment-for-ALU-Project/assets/82789012/c6555ccb-4075-43b3-8adc-07fea3616499)
 
-final functional coverage from class coverpoints with 98.44% coverage
+                                      final functional coverage from class coverpoints with 98.44% coverage
 
 
 ![image](https://github.com/ayaahmed20018414/System-Verilog-verification-Environment-for-ALU-Project/assets/82789012/b8161d4e-8bf7-42d7-87be-dd69b8a1b95f)
 
-value 7 of a_op isn't covered (not illegible value to be given to design). 
+                                          value 7 of a_op isn't covered (not illegible value to be given to design). 
 
 As shown in figure, that value of 7 isn’t covered because of in specs document it isn’t illegible to apply a_op to be 7 to the design so it will be uncovered. Because of design specs, 7 value for a_op won’t be covered in all cases so I will exclude this value and save it to exclusions_file.le.
 
@@ -81,12 +81,17 @@ As shown in figure, that value of 7 isn’t covered because of in specs document
 ![image](https://github.com/ayaahmed20018414/System-Verilog-verification-Environment-for-ALU-Project/assets/82789012/fa2a4363-d146-4a89-a2ad-adb77a507569)
 
 
-coverage after exclude value of 7 from coverage and it will be 100%.
+                                                      coverage after exclude value of 7 from coverage and it will be 100%.
 
 
 7.	Environment class
     
 In Environment class, I will create one object from all previous classes and create three mailboxes to synchronize communication between them. In Environment class there are 3 tasks pre_test(), test(), post_test(). In pre_test() task I will run function reset exists in driver to be sure that before I start my test that the design’s reset has been asserted before. Then task test () will be started to run which will run 5 parallel tasks together for each class in the Environment (generator main task, driver main task, monitor main task, scoreboard main task and sample_task for coverpoints class). Finally, I will run function post_test() to trigger that the generator have finished its function through ended Event then check that the no_transactions in driver is equal to repeat_count in generator and also will check that no_transactions in scoreboard is equal to repeat_count in generator to check that the test is ended.
+
+
+8.	Test module
+   
+In test module, Environment class is created and given to it repeat_count to specify number of generated stimuluses that I want to give to the design.
 
 
 
