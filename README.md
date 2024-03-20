@@ -47,6 +47,45 @@ In driver class it has 2 tasks (not functions as it consumes time):
 •	reset task: in reset task firstly, it waits for reset to happen then it will display when this happens by a message reset asserted (it is preferred to start the simulation with asserting reset to the design interface) after that drive the design with zeros as in this case the design output will be zero and won’t take into consideration the input value.
 •	main task: in this task, transactions from generator will be given to the design interface as a bin level transaction and then assign the output from the design interface after one clock cycle so that the transaction in this case encapsulates the design input and output in the same transaction.
 
+4.	monitor class
+    
+monitor class is used to monitor input and output of design interface.it encapsulates the input and output from the design interface into a transaction and then give them to 2 mailboxes:
+•	mon2Scb mailbox: this mailbox will then transfer data to the Scoreboard to compare input and output data from the design.
+•	Mon2cov mailbox: this mailbox is used to transfer transactions from monitor to coverpoints class to make functional coverage to the design.
+
+
+5.	Scoreboard class
+   
+Scoreboard class used to check if the output from design is as expected or not. In Scoreboard class I tried to test all possible functionalities in ALU to be sure that the design hasn’t any problems.
+In scoreboard class, I implemented temp1,temp2 and temp3 variables to save expected output from the design value then check if the design output value is equal to this values or not and if there is an error the Scoreboard will display an error message that the expected output value is temp1 or temp2 or temp3 according to a_en, b_en, a_op and b_op values and the output from design will be in this case false.
+
+
+6.	Coverpoints class (functional coverage)
+
+In coverpoints class, I check that if values of A, B, a_en, b_en, a_op and b_op are covered 100% (as a functional coverage). Also, I used cross coverage between A, B and between a_en and b_en to guarantee that all values of both inputs are coming together.
+
+![image](https://github.com/ayaahmed20018414/System-Verilog-verification-Environment-for-ALU-Project/assets/82789012/c6555ccb-4075-43b3-8adc-07fea3616499)
+
+final functional coverage from class coverpoints with 98.44% coverage
+
+
+![image](https://github.com/ayaahmed20018414/System-Verilog-verification-Environment-for-ALU-Project/assets/82789012/b8161d4e-8bf7-42d7-87be-dd69b8a1b95f)
+
+value 7 of a_op isn't covered (not illegible value to be given to design). 
+
+As shown in figure, that value of 7 isn’t covered because of in specs document it isn’t illegible to apply a_op to be 7 to the design so it will be uncovered. Because of design specs, 7 value for a_op won’t be covered in all cases so I will exclude this value and save it to exclusions_file.le.
+
+
+![image](https://github.com/ayaahmed20018414/System-Verilog-verification-Environment-for-ALU-Project/assets/82789012/fa2a4363-d146-4a89-a2ad-adb77a507569)
+
+
+coverage after exclude value of 7 from coverage and it will be 100%.
+
+
+7.	Environment class
+    
+In Environment class, I will create one object from all previous classes and create three mailboxes to synchronize communication between them. In Environment class there are 3 tasks pre_test(), test(), post_test(). In pre_test() task I will run function reset exists in driver to be sure that before I start my test that the design’s reset has been asserted before. Then task test () will be started to run which will run 5 parallel tasks together for each class in the Environment (generator main task, driver main task, monitor main task, scoreboard main task and sample_task for coverpoints class). Finally, I will run function post_test() to trigger that the generator have finished its function through ended Event then check that the no_transactions in driver is equal to repeat_count in generator and also will check that no_transactions in scoreboard is equal to repeat_count in generator to check that the test is ended.
+
 
 
 
