@@ -25,7 +25,7 @@ class monitor;
     item.C=vif.C;
     @(posedge vif.clk);
     mon2scb.put(item);
-    //mon2cov.put(item);
+    mon2cov.put(item);
     item.print_info("Monitor");
     end
   endtask
